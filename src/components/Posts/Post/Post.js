@@ -13,7 +13,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./styles";
 
-const Post = () => {
+export const Post = () => {
   const classes = useStyles();
 
   return (
@@ -23,10 +23,9 @@ const Post = () => {
         image={
           "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
         }
-        title={post.title}
       />
       <div className={classes.overlay}>
-        <Typography variant="h6">Sava</Typography>
+        <Typography variant="h6"> Sava </Typography>
         <Typography variant="body2">12 October 2021</Typography>
       </div>
       <div className={classes.overlay2}>
@@ -66,4 +65,3 @@ const Post = () => {
     </Card>
   );
 };
-export default Post;
