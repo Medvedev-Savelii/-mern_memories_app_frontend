@@ -9,6 +9,7 @@ import {
 import thunk from "redux-thunk";
 import { reducers } from "./reducers";
 import App from "./App";
+import "./index.css";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
