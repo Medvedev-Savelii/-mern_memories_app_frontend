@@ -15,6 +15,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./styles";
 import { likePost, deletePost } from "../../../actions/posts";
 
+
 export const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
