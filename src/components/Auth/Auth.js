@@ -26,14 +26,30 @@ const initialState = {
 
 const SignUp = () => {
   const [form, setForm] = useState(initialState);
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
 
   const handleShowPassword = () => setShowPassword(!showPassword);
-  const handleChange = () => {};
+
+  const switchMode = () => {
+    setForm(initialState);
+    setIsSignup((prevIsSignup) => !prevIsSignup);
+    setShowPassword(false);
+  };
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
   const handleSubmit = () => {};
-  const switchMode = () => {};
+
+  const googleSuccess = async (res) => {
+    console.log(res);
+  };
+  const googleError = (error) => {
+    console.log(error);
+    alert("Google Sign In was unsuccessful. Try again later");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -94,8 +110,8 @@ const SignUp = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
-          {/* <GoogleLogin
-            clientId="564033717568-e5p23rhvcs4i6kffgsbci1d64r8hp6fn.apps.googleusercontent.com"
+          <GoogleLogin
+            clientId="431870136498-tl9oolo3rrkh5befaqq3hu42iukgd9he.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -112,7 +128,7 @@ const SignUp = () => {
             onSuccess={googleSuccess}
             onFailure={googleError}
             cookiePolicy="single_host_origin"
-          /> */}
+          />
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
