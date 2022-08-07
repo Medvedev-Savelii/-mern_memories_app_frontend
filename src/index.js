@@ -7,6 +7,7 @@ import {
   compose,
 } from "redux";
 import { BrowserRouter } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import thunk from "redux-thunk";
 import { reducers } from "./reducers";
@@ -19,10 +20,13 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <GoogleOAuthProvider clientId="431870136498-tl9oolo3rrkh5befaqq3hu42iukgd9he.apps.googleusercontent.com">
+        <App />
+      </GoogleOAuthProvider>
     </Provider>
   </BrowserRouter>
 );
