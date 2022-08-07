@@ -15,6 +15,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Icon from "./icon";
 import useStyles from "./styles";
 import Input from "./Input";
+import { signin, signup } from "../../actions/auth";
+import { AUTH } from "../../constants/actionTypes";
 
 const initialState = {
   firstName: "",
@@ -29,7 +31,8 @@ const SignUp = () => {
   const [isSignup, setIsSignup] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const switchMode = () => {
@@ -41,15 +44,31 @@ const SignUp = () => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(form, history));
+    } else {
+      dispatch(signin(form, history));
+    }
+  };
 
   const googleSuccess = async (res) => {
-    console.log(res);
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: AUTH, data: { result, token } });
+
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const googleError = (error) => {
-    console.log(error);
+
+  const googleError = () =>
     alert("Google Sign In was unsuccessful. Try again later");
-  };
 
   return (
     <Container component="main" maxWidth="xs">
