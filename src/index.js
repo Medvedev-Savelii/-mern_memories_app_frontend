@@ -19,12 +19,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-
+const clientId =
+  "431870136498-03as42qigvbldht8k5uau5dtim68u2q8.apps.googleusercontent.com";
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <GoogleOAuthProvider clientId="431870136498-tl9oolo3rrkh5befaqq3hu42iukgd9he.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={clientId}>
         <App />
       </GoogleOAuthProvider>
     </Provider>
